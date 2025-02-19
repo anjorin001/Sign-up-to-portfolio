@@ -124,11 +124,12 @@ button:hover {
     </div>
     <!-- Ill be using regex to validate my form  -->
     <form id="form">
+        <h4>SIGN UP TO VIEW MY PROFILE</h4>
         <label for="name">Entre your name</label>
         <input type="text" id="name" name="name" placeholder="Jhon Doe"  required>
 
         <label for="email">Entre Email</label>
-        <input type="email" id="email" placeholder="jhondoe@gmial.com" required>
+        <input type="" id="email" placeholder="jhondoe@gmial.com" required>
 
         <label for="password">Entre password</label>
         <input type="password" id="password" placeholder="******"  required>
@@ -148,12 +149,16 @@ button:hover {
         let email = document.getElementById('email').value.trim();
         let password = document.getElementById('password').value.trim();
         let cPassword = document.getElementById('cPassword').value.trim();
+let text = "hello world";
+let result = /hello/gi
+console.log(text.match(result))
 
         let emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
         if(name === "" || /\d/.test(name) ){
             alert('Name should not contain numbers');
             return;
         }
+
         if(emailRegex.test(email) === false){
             alert("invalid email");
             return;
