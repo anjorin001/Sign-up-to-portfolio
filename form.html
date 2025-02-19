@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=
+    , initial-scale=1.0">
+    <title>Sign Up To See My Porfolio</title>
+    <style>
+/* Center the form on the page */
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    /* background: linear-gradient(135deg, #007BFF, #00D4FF); */
+    background: linear-gradient(90deg, #665e54 50%, #ffffff 50%);
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+}
+
+/* Form container */
+#form {
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    width: 320px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    transition: transform 0.3s ease-in-out;
+}
+
+/* Hover effect */
+#form:hover {
+    transform: scale(1.02);
+}
+
+/* Labels */
+label {
+    font-weight: 600;
+    color: #333;
+}
+
+/* Input fields */
+input {
+    width: 95%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    outline: none;
+    font-size: 14px;
+    transition: all 0.3s ease-in-out;
+}
+
+/* Input focus effect */
+input:focus {
+    border-color: #007BFF;
+    box-shadow: 0 0 6px rgba(0, 123, 255, 0.5);
+}
+
+/* Submit button */
+button {
+    background: #b9a07e;
+    color: white;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.3s ease-in-out;
+}
+
+/* Button hover effect */
+button:hover {
+    background: #635644;
+}
+
+/* Responsive Design */
+@media (max-width: 400px) {
+    #form {
+        width: 90%;
+        padding: 20px;
+    }
+}
+.pop-up{
+    position: absolute;
+    top: 30px;
+    z-index: 3;
+}
+.pop-up p{
+    color: rgb(41, 39, 36);
+    font-weight: 600;
+}
+.pop-up p a{
+    color: rgb(237, 150, 20);
+}
+
+.pop-up {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 1s ease-in-out, visibility 0s linear 1s;
+}
+
+
+.show {
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 1s ease-in-out;
+}
+
+
+.fade-out {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 1s ease-in-out, visibility 0s linear 1s;
+}
+    </style>
+</head>
+<body>
+    <div class="pop-up" id="pop-up">
+       <p>✅ Form submitted successfully! Click <a href="https://anjorin001.github.io/portfoilo/">here</a> to continue.</p> 
+    </div>
+    <!-- Ill be using regex to validate my form  -->
+    <form id="form">
+        <label for="name">Entre your name</label>
+        <input type="text" id="name" name="name" placeholder="Jhon Doe"  required>
+
+        <label for="email">Entre Email</label>
+        <input type="email" id="email" placeholder="jhondoe@gmial.com" required>
+
+        <label for="password">Entre password</label>
+        <input type="password" id="password" placeholder="******"  required>
+
+        <label for="cpassword">Confirm password</label>
+        <input type="password" id="cPassword" placeholder="******" required>
+
+        <button type="submit">Submit</button>
+    </form>
+</body>
+<script>
+    document.querySelector('form').addEventListener("submit",  function(event){
+        event.preventDefault();
+        let form = document.getElementById('form');
+        let pop = document.getElementById('pop-up');
+        let name = document.getElementById('name').value.trim();
+        let email = document.getElementById('email').value.trim();
+        let password = document.getElementById('password').value.trim();
+        let cPassword = document.getElementById('cPassword').value.trim();
+
+        let emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+        if(name === "" || /\d/.test(name) ){
+            alert('Name should not contain numbers');
+            return;
+        }
+        if(emailRegex.test(email) === false){
+            alert("invalid email");
+            return;
+        }
+        if(password !== cPassword || password.length < 8){
+            alert("Password doesnt match Confirm password");
+        return;
+        }
+     form.classList.add('fade-out')
+        setTimeout(() => {
+    pop.classList.add('show').style.display = 'block';
+        },1000);
+        
+     
+    })
+</script>
+</html>
